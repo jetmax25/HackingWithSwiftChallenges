@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-
+import Foundation
 ////var str = "Hello, playground"
 ////
 ////var tutple = ( a : "a value", b: "b balue", c : "c calue")
@@ -438,7 +438,30 @@ public extension Int {
     }
 }
 
-let testValue = 256
-print(testValue.asBinaryString())
-print(testValue.asPaddedBinaryString())
-print(testValue.reversedBinaryInt)
+extension String {
+    
+    //Returns if a string is an int
+    var isInt: Bool {
+        return Int(self) != nil
+    }
+    
+    ///Adds the values of integers contained within a string
+    var sumOfSubstringInts: Int {
+        
+        var tempSum = 0
+        var sum = 0
+        self.forEach { char in
+            guard let value = Int(String(char)) else {
+                sum += tempSum
+                tempSum = 0
+                return
+            }
+            tempSum *= 10
+            tempSum += value
+            return
+        }
+        return sum + tempSum
+    }
+}
+
+"253asdfad23".sumOfSubstringInts
